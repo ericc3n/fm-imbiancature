@@ -3,487 +3,441 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fixter — Valorizza il tuo immobile</title>
+    <title>Fixter | F.M. Group - Ristrutturazioni e Imbiancature</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <!-- NAVBAR -->
-    <nav id="navbar">
-      <a href="#hero" class="nav-logo">Fix<span>ter</span></a>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#servizi">Servizi</a></li>
-        <li><a href="#come-lavoriamo">Come lavoriamo</a></li>
-        <li><a href="#testimonianze">Galleria</a></li>
-        <li><a href="#contatti">Contatti</a></li>
-      </ul>
-      <a href="tel:+393357101210" class="nav-cta">+39 335 7101210</a>
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </div>
-    </nav>
+    <nav>
+      <div class="container nav-inner">
+        <a href="#" class="logo">FM GROUP</a>
 
-    <!-- HERO -->
-    <section id="hero">
-      <div class="hero-left">
-        <div class="hero-label fade-up">Da oltre 20 anni al tuo servizio</div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Apri menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-        <div style="position: relative">
-          <!-- SVG Brushstroke -->
-          <svg
-            class="brushstroke"
-            viewBox="0 0 600 200"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <path
-              d="M20,120 C60,40 150,180 250,90 C350,0 420,160 550,80 C570,70 590,90 590,100 C590,110 570,130 540,120 C420,180 330,30 230,120 C130,210 60,60 20,140 Z"
-              fill="#A8D8D0"
-            />
-          </svg>
-
-          <h1 class="hero-heading fade-up delay-1">
-            Valorizza<br />
-            <span class="line-2"
-              >il tuo <em class="line-accent">immobile</em></span
-            ><br />
-            <span class="line-3">con un unico fornitore di fiducia</span>
-          </h1>
-        </div>
-
-        <p class="hero-sub fade-up delay-2">
-          Siamo specializzati da oltre 20 anni in imbiancature ambienti
-          residenziali e industriali, pavimentazioni e isolamenti.
-        </p>
-
-        <div class="hero-actions fade-up delay-3">
-          <a href="#servizi" class="btn-circle" title="Scopri i servizi">↗</a>
-          <span class="badge-free">Sopralluogo gratuito</span>
-          <a href="mailto:info@fm-imbiancature.it" class="btn-black"
-            >Contattaci</a
-          >
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <img
-          src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1400&auto=format&fit=crop"
-          alt="Operaio mentre dipinge"
-          class="hero-img-main"
-          loading="lazy"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&auto=format&fit=crop"
-          alt="Pennelli da pittore"
-          class="hero-float-1"
-          loading="lazy"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=300&auto=format&fit=crop"
-          alt="Campioni di colore"
-          class="hero-float-2"
-          loading="lazy"
-        />
-      </div>
-    </section>
-
-    <!-- WHO WE ARE -->
-    <section id="chi-siamo">
-      <div class="chi-left fade-up">
-        <div class="section-label">Chi siamo?</div>
-        <p>
-          FM Imbiancature è un'azienda familiare fondata con passione e
-          dedizione. Offriamo soluzioni complete per la cura e la valorizzazione
-          degli immobili residenziali e industriali. Il nostro team di
-          professionisti garantisce qualità, puntualità e massima attenzione al
-          dettaglio in ogni progetto. Dalla piccola stanza al grande capannone
-          industriale, affrontiamo ogni lavoro con lo stesso spirito artigianale
-          e l'esperienza di oltre due decenni di attività.
-        </p>
-        <div style="margin-top: 2rem">
-          <a href="mailto:info@fm-imbiancature.it" class="btn-black"
-            >Scopri di più</a
-          >
-        </div>
-      </div>
-      <div class="chi-right fade-up delay-2">
-        <div class="section-label">Esperienza</div>
-        <div class="big-number" id="counterNum">1324</div>
-        <p class="caption">clienti soddisfatti</p>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="servizi">
-      <div class="section-label fade-up">I nostri servizi</div>
-      <h2 class="section-title fade-up delay-1">
-        Tutto quello che ti serve, sotto un unico tetto.
-      </h2>
-
-      <div class="services-grid">
-        <div class="service-card fade-up">
-          <div class="icon">🖌</div>
-          <div class="badge-count">✓ 50+ progetti</div>
-          <h3>Imbiancature interni e esterni</h3>
-          <p>
-            Estetica e protezione per abitazioni, uffici e capannoni. Materiali
-            premium e finiture impeccabili.
-          </p>
-          <img
-            src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&auto=format&fit=crop"
-            alt="Imbiancatura"
-            class="card-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="service-card fade-up delay-1">
-          <div class="icon">🪵</div>
-          <div class="badge-count">✓ 30+ progetti</div>
-          <h3>Pavimenti in resina, legno e laminato</h3>
-          <p>
-            Legno massello, laminato o resine all'avanguardia per ogni stile e
-            necessità abitativa.
-          </p>
-          <img
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&auto=format&fit=crop"
-            alt="Pavimenti legno"
-            class="card-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="service-card fade-up delay-2">
-          <div class="icon">🏗</div>
-          <div class="badge-count">✓ 75+ progetti</div>
-          <h3>Cappotti e isolamenti termici</h3>
-          <p>
-            Riduci i consumi energetici e aumenta il comfort abitativo con
-            soluzioni certificate.
-          </p>
-          <img
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&auto=format&fit=crop"
-            alt="Cappotto termico"
-            class="card-img"
-            loading="lazy"
-          />
-        </div>
-        <div class="service-card fade-up delay-3">
-          <div class="icon">🏠</div>
-          <div class="badge-count">✓ 45+ progetti</div>
-          <h3>Imbiancature residenziali</h3>
-          <p>
-            Soluzioni su misura per ogni tipo di abitazione. Colori, texture e
-            finiture personalizzate.
-          </p>
-          <img
-            src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=400&auto=format&fit=crop"
-            alt="Imbiancatura residenziale"
-            class="card-img"
-            loading="lazy"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- FULL-WIDTH BAND -->
-    <section id="band">
-      <img
-        src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1400&auto=format&fit=crop"
-        alt="Operaio in cantiere"
-        class="band-img fade-up"
-        loading="lazy"
-      />
-      <div class="band-strip">
-        <div class="band-left fade-up">
-          <div class="band-label">La nostra presenza</div>
-          <div class="band-big">Clienti in<br />tutta Italia</div>
-          <div
-            style="
-              margin-top: 1rem;
-              font-family: &quot;Playfair Display&quot;, serif;
-              font-size: 2.2rem;
-              font-weight: 900;
-            "
-          >
-            1.83 milioni+
-          </div>
-        </div>
-        <div class="band-right fade-up delay-1">
-          <div class="band-cta-text">Iniziamo<br />a dipingere</div>
-          <div class="avatar-row">
-            <img
-              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&crop=face"
-              alt="Cliente soddisfatto"
-              loading="lazy"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&crop=face"
-              alt="Cliente soddisfatta"
-              loading="lazy"
-            />
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&crop=face"
-              alt="Cliente soddisfatto"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW WE WORK -->
-    <section id="come-lavoriamo">
-      <div class="section-label fade-up">Il nostro metodo</div>
-      <h2 class="section-title fade-up delay-1">Come lavoriamo</h2>
-
-      <div class="step-row fade-up">
-        <div class="step-num">01</div>
-        <div class="step-mid">
-          <h3>Sopralluogo gratuito</h3>
-          <img
-            src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=300&auto=format&fit=crop"
-            alt="Sopralluogo"
-            class="step-img"
-            loading="lazy"
-          />
-        </div>
-        <p class="step-desc">
-          Veniamo da te senza impegno. Analizziamo lo stato dell'immobile e
-          ascoltiamo le tue esigenze per capire la soluzione ideale.
-        </p>
-      </div>
-
-      <div class="step-row fade-up">
-        <div class="step-num">02</div>
-        <div class="step-mid">
-          <h3>Preventivo trasparente</h3>
-          <img
-            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&auto=format&fit=crop"
-            alt="Preventivo"
-            class="step-img"
-            loading="lazy"
-          />
-        </div>
-        <p class="step-desc">
-          Ricevi un preventivo dettagliato e senza sorprese. Prezzi chiari,
-          materiali specificati, tempi stimati. Nessun costo nascosto.
-        </p>
-      </div>
-
-      <div class="step-row fade-up">
-        <div class="step-num">03</div>
-        <div class="step-mid">
-          <h3>Lavorazione professionale</h3>
-          <img
-            src="https://images.unsplash.com/photo-1617096200347-cb04ae810b1d?w=300&auto=format&fit=crop"
-            alt="Lavorazione"
-            class="step-img"
-            loading="lazy"
-          />
-        </div>
-        <p class="step-desc">
-          Il nostro team certificato esegue ogni lavoro con cura artigianale e
-          prodotti di prima qualità, rispettando i tempi concordati.
-        </p>
-      </div>
-
-      <div class="step-row fade-up">
-        <div class="step-num">04</div>
-        <div class="step-mid">
-          <h3>Cantiere pulito e puntuale</h3>
-          <img
-            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=300&auto=format&fit=crop"
-            alt="Cantiere pulito"
-            class="step-img"
-            loading="lazy"
-          />
-        </div>
-        <p class="step-desc">
-          Lasciamo ogni ambiente in ordine impeccabile. Il lavoro finisce quando
-          sei completamente soddisfatto, non prima.
-        </p>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonianze">
-      <div class="section-label fade-up">Cosa dicono di noi</div>
-      <h2 class="section-title fade-up delay-1">
-        Oltre 20 anni di soddisfazione
-      </h2>
-
-      <div class="carousel-wrap fade-up delay-2">
-        <div class="carousel-track-outer">
-          <div class="carousel-track" id="carouselTrack">
-            <div class="testi-card">
-              <div class="stars">★★★★★</div>
-              <p>
-                "Professionalità eccezionale. Hanno tinteggiato l'intero
-                appartamento in 3 giorni, lasciando tutto pulitissimo. Ci siamo
-                trovati benissimo!"
-              </p>
-              <div class="author">
-                <img
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&crop=face"
-                  alt="Marco R."
-                  loading="lazy"
-                />
-                <div><strong>Marco Rinaldi</strong><span>Milano</span></div>
-              </div>
-            </div>
-            <div class="testi-card">
-              <div class="stars">★★★★★</div>
-              <p>
-                "Ho rifatto i pavimenti di tutta la casa in resina. Risultato
-                spettacolare! Prezzo onesto e lavoro impeccabile. Li consiglio a
-                tutti."
-              </p>
-              <div class="author">
-                <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&crop=face"
-                  alt="Giulia M."
-                  loading="lazy"
-                />
-                <div><strong>Giulia Montanari</strong><span>Torino</span></div>
-              </div>
-            </div>
-            <div class="testi-card">
-              <div class="stars">★★★★★</div>
-              <p>
-                "Abbiamo fatto il cappotto termico con FM. La bolletta si è
-                dimezzata! Team puntuale, preciso e gentilissimo. Assolutamente
-                da ricontattare."
-              </p>
-              <div class="author">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&crop=face"
-                  alt="Luca B."
-                  loading="lazy"
-                />
-                <div><strong>Luca Bernardi</strong><span>Bergamo</span></div>
-              </div>
-            </div>
-            <div class="testi-card">
-              <div class="stars">★★★★★</div>
-              <p>
-                "Avevo un ufficio da rifare completamente. FM ha gestito tutto
-                in modo impeccabile, rispettando ogni scadenza. Sono rimasta
-                stupita dalla qualità."
-              </p>
-              <div class="author">
-                <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&crop=face"
-                  alt="Sara C."
-                  loading="lazy"
-                />
-                <div><strong>Sara Colombo</strong><span>Monza</span></div>
-              </div>
-            </div>
-            <div class="testi-card">
-              <div class="stars">★★★★★</div>
-              <p>
-                "Ottimo rapporto qualità-prezzo. Hanno tinteggiato capannone e
-                uffici in tempi brevi senza disturbare l'attività. Torneremo
-                certamente."
-              </p>
-              <div class="author">
-                <img
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&crop=face"
-                  alt="Antonio F."
-                  loading="lazy"
-                />
-                <div><strong>Antonio Ferrari</strong><span>Brescia</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-controls">
-          <button class="carousel-btn" id="prevBtn" aria-label="Precedente">
-            ←
-          </button>
-          <button class="carousel-btn" id="nextBtn" aria-label="Successivo">
-            →
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- CLOSING CTA -->
-    <section id="cta">
-      <h2 class="fade-up">
-        Hai un progetto<br />
-        <em style="font-style: italic">in mente?</em><br />
-        <span class="accent-underline"
-          >Partiamo da un sopralluogo gratuito</span
-        >
-      </h2>
-      <a
-        href="mailto:info@fm-imbiancature.it"
-        class="btn-black fade-up delay-1"
-        style="font-size: 1rem; padding: 1rem 2.8rem"
-        >Contattaci ora</a
-      >
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="contatti">
-      <div class="footer-top">
-        <div>
-          <div class="footer-logo">Fix<span>ter</span></div>
-          <p class="footer-tagline">
-            FM Imbiancature — Da oltre 20 anni al servizio dei tuoi spazi.<br />P.
-            IVA: 06026200961
-          </p>
-        </div>
-        <div class="footer-col">
-          <h4>Navigazione</h4>
-          <ul>
-            <li><a href="#hero">Home</a></li>
+        <div class="nav-content" id="nav-content">
+          <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
             <li><a href="#servizi">Servizi</a></li>
-            <li><a href="#come-lavoriamo">Come lavoriamo</a></li>
-            <li><a href="#testimonianze">Testimonianze</a></li>
-            <li>
-              <a
-                href="https://www.fm-imbiancature.com/"
-                target="_blank"
-                rel="noopener"
-                >Sito ufficiale</a
-              >
-            </li>
+            <li><a href="#lavori">Galleria</a></li>
+            <li><a href="#contatti">Contatti</a></li>
           </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contatti</h4>
-          <div class="contact-line">
-            📞 <a href="tel:+393357101210">+39 335 7101210</a>
-          </div>
-          <div class="contact-line">
-            ✉️
-            <a href="mailto:info@fm-imbiancature.it">info@fm-imbiancature.it</a>
-          </div>
-          <div class="contact-line">
-            🌐
+          <div class="nav-contact">
+            <a href="tel:+393357101210" class="icon-link" aria-label="Chiama"
+              >📞</a
+            >
             <a
-              href="https://www.fm-imbiancature.com/"
-              target="_blank"
-              rel="noopener"
-              >fm-imbiancature.com</a
+              href="mailto:info@fm-imbiancature.it"
+              class="icon-link"
+              aria-label="Email"
+              >✉️</a
             >
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 Fixter / FM Imbiancature. Tutti i diritti riservati.</span>
-        <span>P. IVA 06026200961</span>
+    </nav>
+
+    <header class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content fade-in-up">
+          <svg
+            class="brushstroke"
+            viewBox="0 0 500 300"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="var(--mint)"
+              d="M40,150 C80,-10 380,-20 480,120 C520,180 430,280 320,270 C150,250 -10,250 40,150 Z"
+              opacity="0.4"
+            />
+          </svg>
+
+          <span class="label">Da oltre 20 anni al tuo servizio</span>
+          <h1>
+            Valorizza<br /><i>il tuo immobile</i><br />con un unico fornitore
+          </h1>
+
+          <div class="badge">
+            <span class="badge-check">✓</span> Sopralluogo gratuito
+          </div>
+
+          <p class="hero-sub">
+            Siamo specializzati da oltre 20 anni in imbiancature ambienti
+            residenziali e industriali, pavimentazioni e isolamenti. La qualità
+            artigiana per i tuoi spazi.
+          </p>
+
+          <a href="#contatti" class="btn">Contattaci</a>
+        </div>
+
+        <div
+          class="hero-image-wrapper fade-in-up"
+          style="transition-delay: 0.2s"
+        >
+          <img
+            src="/public/hero-main.jpeg"
+            alt="Imbianchino al lavoro"
+            class="hero-img-main"
+            loading="lazy"
+          />
+
+          <img
+            src="/public/image-circle.jpeg"
+            alt="Pennelli da pittura"
+            class="circle-img circle-1"
+            loading="lazy"
+          />
+          <img
+            src="/public/hero-main-2.jpeg"
+            alt="Mazzette colori"
+            class="circle-img circle-2"
+            loading="lazy"
+          />
+
+          <a href="#servizi" class="cta-circle">↗</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="who-we-are section-padding" id="chi-siamo">
+      <div class="container stats-grid fade-in-up">
+        <div class="who-text">
+          <span class="label">Chi siamo?</span>
+          <p>
+            <strong>F.M. Group Srl</strong> è un'impresa artigiana con sede a
+            Trecate, attiva in tutta la provincia di Novara e nella zona di
+            Magenta. Da anni realizziamo tinteggiature per interni ed esterni su
+            edifici civili e industriali, gestendo ristrutturazioni complete —
+            da semplici imbiancature a rifacimenti integrali di appartamenti,
+            ville, bagni e cucine.
+          </p>
+          <p>
+            Siamo specializzati anche in pavimenti in resina, parquet,
+            rivestimenti, controsoffitti e lavorazioni in cartongesso. Un unico
+            interlocutore, dalla prima consulenza alla consegna chiavi in mano.
+          </p>
+        </div>
+        <div class="who-stats">
+          <span class="label">Esperienza</span>
+          <div class="stats-number">1324</div>
+          <p class="serif" style="font-size: 1.2rem; color: #666">
+            clienti soddisfatti
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="services section-padding" id="servizi">
+      <div class="container">
+        <span class="label fade-in-up">Le nostre competenze</span>
+        <h2
+          class="serif fade-in-up"
+          style="font-size: 2.5rem; margin-bottom: 1rem"
+        >
+          Servizi su misura per te
+        </h2>
+
+        <div class="services-grid">
+          <div class="service-card fade-in-up" style="transition-delay: 0.1s">
+            <span class="service-icon">🖌</span>
+            <div class="service-badge">
+              <span>✓</span> 50+ progetti completati
+            </div>
+            <h3>Imbiancature interni e esterni</h3>
+            <p>
+              Estetica e protezione per abitazioni, uffici e capannoni.
+              Utilizziamo vernici di alta qualità e tecniche all'avanguardia.
+            </p>
+          </div>
+          <div class="service-card fade-in-up" style="transition-delay: 0.2s">
+            <span class="service-icon">🪵</span>
+            <div class="service-badge">
+              <span>✓</span> 30+ progetti completati
+            </div>
+            <h3>Pavimenti in resina e legno</h3>
+            <p>
+              Legno, laminato o resine all'avanguardia. Soluzioni durevoli ed
+              esteticamente perfette per rinnovare ogni ambiente.
+            </p>
+          </div>
+          <div class="service-card fade-in-up" style="transition-delay: 0.3s">
+            <span class="service-icon">🏗</span>
+            <div class="service-badge">
+              <span>✓</span> 75+ progetti completati
+            </div>
+            <h3>Cappotti e isolamenti</h3>
+            <p>
+              Riduci i consumi e aumenta il comfort abitativo. Interventi mirati
+              di isolamento termico e acustico per il massimo risparmio.
+            </p>
+          </div>
+          <div class="service-card fade-in-up" style="transition-delay: 0.4s">
+            <span class="service-icon">🏠</span>
+            <div class="service-badge">
+              <span>✓</span> 45+ progetti completati
+            </div>
+            <h3>Ristrutturazioni residenziali</h3>
+            <p>
+              Soluzioni su misura per ogni abitazione, inclusi lavori in
+              cartongesso, controsoffitti e rifacimenti completi chiavi in mano.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="full-width-band fade-in-up">
+      <img
+        src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1400&auto=format&fit=crop"
+        alt="Dettaglio lavoratore edile"
+        loading="lazy"
+      />
+    </section> -->
+
+    <section class="how-we-work section-padding">
+      <div class="container">
+        <h2
+          class="serif fade-in-up"
+          style="font-size: 3rem; margin-bottom: 1rem"
+        >
+          Come lavoriamo.
+        </h2>
+
+        <div class="steps-container">
+          <div class="step-row fade-in-up">
+            <div class="step-label-col">Step 01</div>
+            <div class="step-title-col">
+              <img
+                src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=300&auto=format&fit=crop"
+                alt="Consulenza"
+                loading="lazy"
+              />
+              <h3>Sopralluogo gratuito</h3>
+            </div>
+            <div class="step-desc-col">
+              <p>
+                Incontriamo i clienti per comprendere a fondo le loro esigenze,
+                valutare gli spazi e proporre le migliori soluzioni estetiche e
+                funzionali.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-row fade-in-up">
+            <div class="step-label-col">Step 02</div>
+            <div class="step-title-col">
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=300&auto=format&fit=crop"
+                alt="Preventivo"
+                loading="lazy"
+              />
+              <h3>Preventivo trasparente</h3>
+            </div>
+            <div class="step-desc-col">
+              <p>
+                Forniamo una stima dettagliata dei costi e delle tempistiche,
+                senza sorprese, garantendo chiarezza fin dal primo documento.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-row fade-in-up">
+            <div class="step-label-col">Step 03</div>
+            <div class="step-title-col">
+              <img
+                src="public/lavorazione-professionale.jpeg"
+                alt="Lavorazione"
+                loading="lazy"
+              />
+              <h3>Lavorazione professionale</h3>
+            </div>
+            <div class="step-desc-col">
+              <p>
+                Il nostro team di esperti artigiani esegue i lavori utilizzando
+                materiali premium e tecniche certificate per un risultato
+                durevole.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-row fade-in-up">
+            <div class="step-label-col">Step 04</div>
+            <div class="step-title-col">
+              <img
+                src="/public/cantiere-pulito.jpeg"
+                alt="Cantiere pulito"
+                loading="lazy"
+              />
+              <h3>Cantiere pulito e puntuale</h3>
+            </div>
+            <div class="step-desc-col">
+              <p>
+                Rispettiamo i tempi di consegna concordati e ci assicuriamo di
+                lasciare gli ambienti perfettamente puliti e pronti da vivere.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials section-padding" id="dicono-di-noi">
+      <div class="container">
+        <div class="test-header fade-in-up">
+          <div>
+            <span class="label" style="color: var(--yellow)"
+              >Testimonianze</span
+            >
+            <h2>Oltre 20 anni di soddisfazione.</h2>
+          </div>
+          <div class="carousel-nav">
+            <button class="carousel-btn" id="prev-btn">←</button>
+            <button class="carousel-btn" id="next-btn">→</button>
+          </div>
+        </div>
+
+        <div class="carousel-viewport fade-in-up">
+          <div class="carousel-track" id="testimonial-track">
+            <div class="testimonial-card">
+              <div class="test-inner">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="quote">
+                  "Professionalità incredibile. Hanno ristrutturato il nostro
+                  ufficio nei tempi stabiliti. Finiture perfette e cantiere
+                  lasciato in condizioni immacolate."
+                </p>
+                <div class="client-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&crop=face"
+                    alt="Marco R."
+                    loading="lazy"
+                  />
+                  <h4>Marco R.</h4>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="test-inner">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="quote">
+                  "Ho chiamato FM Group per il cappotto termico della mia
+                  villetta. Risultato eccellente, personale gentile e sempre
+                  disponibile a spiegare i dettagli tecnici."
+                </p>
+                <div class="client-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&crop=face"
+                    alt="Giulia B."
+                    loading="lazy"
+                  />
+                  <h4>Giulia B.</h4>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="test-inner">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="quote">
+                  "Hanno rifatto tutto il pavimento in resina del nostro locale
+                  commerciale. Il lavoro è impeccabile e dona una luce
+                  completamente nuova all'ambiente."
+                </p>
+                <div class="client-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&crop=face"
+                    alt="Alessandro M."
+                    loading="lazy"
+                  />
+                  <h4>Alessandro M.</h4>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card">
+              <div class="test-inner">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="quote">
+                  "Dall'imbiancatura alle finiture in cartongesso, un unico
+                  interlocutore che ha risolto ogni problema. Prezzi onesti e
+                  massima trasparenza."
+                </p>
+                <div class="client-info">
+                  <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&crop=face"
+                    alt="Luca F."
+                    loading="lazy"
+                  />
+                  <h4>Luca F.</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-cta fade-in-up" id="contatti">
+      <div class="container">
+        <h2 class="serif">
+          Hai un progetto in mente?<br />Partiamo da un sopralluogo gratuito.
+        </h2>
+        <a href="mailto:info@fm-imbiancature.it" class="btn"
+          >Contattaci subito</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="footer-logo">FM GROUP</a>
+            <p>
+              F.M. Group Srl<br />La qualità artigiana per i tuoi spazi, da
+              oltre 20 anni.
+            </p>
+            <p style="margin-top: 1rem">P. IVA: 06026200961</p>
+          </div>
+          <div class="footer-links">
+            <h4>Contatti</h4>
+            <ul>
+              <li><a href="tel:+393357101210">+39 335 7101210</a></li>
+              <li>
+                <a href="mailto:info@fm-imbiancature.it"
+                  >info@fm-imbiancature.it</a
+                >
+              </li>
+              <li>
+                <a href="https://www.fm-imbiancature.com/" target="_blank"
+                  >www.fm-imbiancature.com</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Esplora</h4>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#chi-siamo">Chi siamo</a></li>
+              <li><a href="#servizi">I nostri servizi</a></li>
+              <li><a href="#dicono-di-noi">Dicono di noi</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 F.M. Group Srl. Tutti i diritti riservati.</p>
+        </div>
       </div>
     </footer>
 
-    <script src="./script.js" />
+    <script src="./script.js"></script>
   </body>
 </html>

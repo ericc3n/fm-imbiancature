@@ -1,145 +1,97 @@
-// ─── NAVBAR SCROLL ───
-const navbar = document.getElementById("navbar");
-window.addEventListener("scroll", () => {
-  navbar.classList.toggle("scrolled", window.scrollY > 30);
-});
+// --- Intersection Observer for Scroll Animations ---
+document.addEventListener("DOMContentLoaded", () => {
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.15,
+  };
 
-// ─── HAMBURGER MENU ───
-function toggleMenu() {
-  const links = document.querySelector(".nav-links");
-  links.style.display = links.style.display === "flex" ? "none" : "flex";
-  if (links.style.display === "flex") {
-    Object.assign(links.style, {
-      flexDirection: "column",
-      position: "absolute",
-      top: "72px",
-      left: 0,
-      right: 0,
-      background: "#fff",
-      padding: "1.5rem 5vw",
-      gap: "1.2rem",
-      borderBottom: "1px solid #e8e8e8",
-      zIndex: 99,
-    });
-  }
-}
-
-// ─── INTERSECTION OBSERVER ───
-const observer = new IntersectionObserver(
-  (entries) => {
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        // Counter animation
-        if (entry.target.id === "counterNum") {
-          animateCounter(entry.target, 1324, 1800);
-          entry.target.classList.add("visible-num");
-        }
-        observer.unobserve(entry.target);
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target); // Animate only once
       }
     });
-  },
-  { threshold: 0.15 },
-);
+  }, observerOptions);
 
-document
-  .querySelectorAll(".fade-up, #counterNum")
-  .forEach((el) => observer.observe(el));
+  document.querySelectorAll(".fade-in-up").forEach((el) => {
+    observer.observe(el);
+  });
 
-// ─── COUNTER ANIMATION ───
-function animateCounter(el, target, duration) {
-  const start = performance.now();
-  const update = (time) => {
-    const elapsed = time - start;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(eased * target).toLocaleString("it-IT");
-    if (progress < 1) requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
-}
+  // --- Vanilla JS Carousel ---
+  const track = document.getElementById("testimonial-track");
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
 
-// ─── CAROUSEL ───
-const track = document.getElementById("carouselTrack");
-const cards = track.querySelectorAll(".testi-card");
-let currentIndex = 0;
-let autoAdvance;
-let startX = 0;
+  let currentIndex = 0;
+  const totalCards = document.querySelectorAll(".testimonial-card").length;
+  let autoPlayInterval;
 
-function getVisible() {
-  if (window.innerWidth <= 768) return 1;
-  if (window.innerWidth <= 1200) return 2;
-  return 3;
-}
-
-function updateCarousel(animate = true) {
-  const visible = getVisible();
-  const total = cards.length;
-  const maxIndex = total - visible;
-  currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
-  const cardWidth = cards[0].offsetWidth + 24; // gap
-  track.style.transition = animate
-    ? "transform 0.5s cubic-bezier(0.4,0,0.2,1)"
-    : "none";
-  track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-}
-
-document.getElementById("prevBtn").addEventListener("click", () => {
-  currentIndex = Math.max(0, currentIndex - 1);
-  updateCarousel();
-  resetAuto();
-});
-
-document.getElementById("nextBtn").addEventListener("click", () => {
-  const visible = getVisible();
-  currentIndex = (currentIndex + 1) % (cards.length - visible + 1);
-  updateCarousel();
-  resetAuto();
-});
-
-// Touch support
-track.addEventListener(
-  "touchstart",
-  (e) => {
-    startX = e.touches[0].clientX;
-  },
-  { passive: true },
-);
-track.addEventListener("touchend", (e) => {
-  const diff = startX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 40) {
-    if (diff > 0) {
-      currentIndex = Math.min(currentIndex + 1, cards.length - getVisible());
-    } else {
-      currentIndex = Math.max(0, currentIndex - 1);
-    }
-    updateCarousel();
-    resetAuto();
+  function getVisibleCards() {
+    if (window.innerWidth >= 1200) return 3;
+    if (window.innerWidth >= 768) return 2;
+    return 1;
   }
+
+  function updateCarousel() {
+    const visibleCards = getVisibleCards();
+    const maxIndex = totalCards - visibleCards;
+
+    // Boundaries
+    if (currentIndex > maxIndex) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = maxIndex;
+
+    const percentage = currentIndex * (100 / visibleCards);
+    track.style.transform = `translateX(-${percentage}%)`;
+  }
+
+  function nextSlide() {
+    currentIndex++;
+    updateCarousel();
+    resetInterval();
+  }
+
+  function prevSlide() {
+    currentIndex--;
+    updateCarousel();
+    resetInterval();
+  }
+
+  function startInterval() {
+    autoPlayInterval = setInterval(nextSlide, 4000); // 4 seconds auto-advance
+  }
+
+  function resetInterval() {
+    clearInterval(autoPlayInterval);
+    startInterval();
+  }
+
+  // Event Listeners
+  nextBtn.addEventListener("click", nextSlide);
+  prevBtn.addEventListener("click", prevSlide);
+  window.addEventListener("resize", updateCarousel);
+
+  // Init Carousel
+  updateCarousel();
+  startInterval();
 });
 
-function resetAuto() {
-  clearInterval(autoAdvance);
-  autoAdvance = setInterval(() => {
-    const visible = getVisible();
-    currentIndex = (currentIndex + 1) % (cards.length - visible + 1);
-    updateCarousel();
-  }, 4000);
-}
+// --- Mobile Menu Toggle ---
+const menuToggle = document.getElementById("menu-toggle");
+const navContent = document.getElementById("nav-content");
+const navLinksAnchors = document.querySelectorAll(".nav-links a");
 
-window.addEventListener("resize", () => updateCarousel(false));
-resetAuto();
+// Apri/Chiudi il menu cliccando sull'hamburger
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("active");
+  navContent.classList.toggle("active");
+});
 
-// ─── SMOOTH SCROLL ───
-document.querySelectorAll('a[href^="#"]').forEach((a) => {
-  a.addEventListener("click", (e) => {
-    const target = document.querySelector(a.getAttribute("href"));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-      // Close mobile menu
-      const links = document.querySelector(".nav-links");
-      if (window.innerWidth <= 768) links.style.display = "none";
-    }
+// Chiudi il menu automaticamente quando si clicca su un link
+navLinksAnchors.forEach((link) => {
+  link.addEventListener("click", () => {
+    menuToggle.classList.remove("active");
+    navContent.classList.remove("active");
   });
 });
