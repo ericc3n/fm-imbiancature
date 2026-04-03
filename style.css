@@ -142,18 +142,18 @@ nav {
 .nav-content {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 3.5rem;
 }
 
 .nav-links {
   display: flex;
-  gap: 2.5rem;
+  gap: 3.5rem;
   align-items: center;
 }
 
 .nav-contact {
   display: flex;
-  gap: 1rem;
+  gap: 1.125rem;
 }
 
 /* Pulsante Hamburger (Nascosto su Desktop) */
