@@ -1,1 +1,7 @@
-<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="200px" width="200px" xmlns="http://www.w3.org/2000/svg"><path d="M416 128V32c0-17.67-14.33-32-32-32H32C14.33 0 0 14.33 0 32v96c0 17.67 14.33 32 32 32h352c17.67 0 32-14.33 32-32zm32-64v128c0 17.67-14.33 32-32 32H256c-35.35 0-64 28.65-64 64v32c-17.67 0-32 14.33-32 32v128c0 17.67 14.33 32 32 32h64c17.67 0 32-14.33 32-32V352c0-17.67-14.33-32-32-32v-32h160c53.02 0 96-42.98 96-96v-64c0-35.35-28.65-64-64-64z"></path></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(0.390625,0,0,0.390625,0,0)">
+        <path d="M416,128L416,32C416,14.33 401.67,0 384,0L32,0C14.33,0 0,14.33 0,32L0,128C0,145.67 14.33,160 32,160L384,160C401.67,160 416,145.67 416,128ZM448,64L448,192C448,209.67 433.67,224 416,224L256,224C220.65,224 192,252.65 192,288L192,320C174.33,320 160,334.33 160,352L160,480C160,497.67 174.33,512 192,512L256,512C273.67,512 288,497.67 288,480L288,352C288,334.33 273.67,320 256,320L256,288L416,288C469.02,288 512,245.02 512,192L512,128C512,92.65 483.35,64 448,64Z" style="fill:rgb(245,200,0);fill-rule:nonzero;"/>
+    </g>
+</svg>
