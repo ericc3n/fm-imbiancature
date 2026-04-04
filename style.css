@@ -441,11 +441,13 @@ nav {
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 3rem;
+  flex-wrap: wrap;
 }
 
 .test-header h2 {
   font-size: 2.5rem;
   color: var(--white);
+  min-width: 295px;
 }
 
 .carousel-nav {
