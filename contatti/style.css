@@ -1,3 +1,7 @@
+/* STYLE.CSS - F.M. GROUP 
+  Versione: Contatti & Navigation
+*/
+
 :root {
   --yellow: #f5c800;
   --black: #111111;
@@ -37,7 +41,7 @@ ul {
   list-style: none;
 }
 
-/* 2. TYPOGRAPHY & UI ELEMENTS */
+/* 2. TYPOGRAPHY */
 h1,
 h2,
 h3,
@@ -55,39 +59,6 @@ h4,
   font-weight: 500;
   margin-bottom: 1rem;
   display: block;
-}
-
-.btn {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background-color: var(--black);
-  color: var(--white);
-  border-radius: 50px;
-  font-weight: 500;
-  transition: var(--transition);
-  cursor: pointer;
-  border: none;
-}
-
-.btn:hover {
-  background-color: #333;
-  transform: translateY(-2px);
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--gray);
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.badge-check {
-  color: var(--mint);
-  font-weight: bold;
 }
 
 /* 3. LAYOUT UTILITIES */
@@ -114,9 +85,9 @@ h4,
   transform: translateY(0);
 }
 
-/* 4. NAVIGATION */
+/* 4. NAVIGATION & MOBILE MENU */
 nav {
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid #eaeaea;
   background-color: rgba(255, 255, 255, 0.95);
   position: sticky;
@@ -131,13 +102,6 @@ nav {
   align-items: center;
 }
 
-.logo {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: -1px;
-}
-
 .nav-content {
   display: flex;
   align-items: center;
@@ -147,12 +111,6 @@ nav {
 .nav-links {
   display: flex;
   gap: 3.5rem;
-  align-items: center;
-}
-
-.nav-contact {
-  display: flex;
-  gap: 1.125rem;
 }
 
 .nav-links a {
@@ -162,6 +120,11 @@ nav {
 
 .nav-links a:hover {
   color: var(--yellow);
+}
+
+.nav-contact {
+  display: flex;
+  gap: 1.125rem;
 }
 
 .icon-link {
@@ -177,7 +140,6 @@ nav {
 
 .icon-link:hover {
   background-color: var(--yellow);
-  color: var(--black);
 }
 
 .menu-toggle {
@@ -189,7 +151,6 @@ nav {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1000;
 }
 
 .menu-toggle span {
@@ -197,74 +158,9 @@ nav {
   height: 2px;
   background-color: var(--black);
   transition: var(--transition);
-  border-radius: 2px;
 }
 
-/* 5. COMPONENTS (Hero, Services, Steps, Carousel) */
-.hero {
-  padding: 4rem 0 6rem;
-  overflow: hidden;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-.hero h1 {
-  font-size: 3.5rem;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  letter-spacing: -1px;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-.service-card {
-  background-color: var(--gray);
-  padding: 2.5rem 2rem;
-  border-radius: 16px;
-  transition: var(--transition);
-}
-.service-card:hover {
-  background-color: var(--mint);
-  transform: translateY(-5px);
-}
-
-.step-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  padding: 2.5rem 0;
-  border-bottom: 1px solid #eaeaea;
-  align-items: center;
-}
-
-.testimonials {
-  background-color: var(--black);
-  color: var(--white);
-  overflow: hidden;
-}
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s var(--transition);
-}
-.testimonial-card {
-  flex: 0 0 100%;
-  padding: 0 1rem;
-}
-.test-inner {
-  background: #1a1a1a;
-  padding: 2.5rem;
-  border-radius: 16px;
-  height: 100%;
-}
-
-/* 6. CONTACT PAGE */
+/* 5. CONTACT PAGE SPECIFIC */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -318,6 +214,19 @@ nav {
   flex-shrink: 0;
 }
 
+.contact-card-content h3 {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.contact-card-content p {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
 .contact-link {
   font-family: var(--font-heading);
   font-size: 1.1rem;
@@ -331,7 +240,7 @@ nav {
   background-color: var(--yellow);
 }
 
-/* 7. FOOTER */
+/* 6. FOOTER */
 footer {
   background-color: var(--black);
   color: #888;
@@ -342,24 +251,41 @@ footer {
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 3rem;
   margin-bottom: 3rem;
 }
+
 .footer-logo {
   font-family: var(--font-heading);
   font-size: 2rem;
   color: var(--white);
   font-weight: 700;
   margin-bottom: 1rem;
-  display: block;
 }
+
+.footer-links h4 {
+  color: var(--white);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-body);
+}
+
+.footer-links ul li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a:hover {
+  color: var(--yellow);
+}
+
 .footer-bottom {
   border-top: 1px solid #333;
   padding-top: 2rem;
   text-align: center;
 }
 
-/* 8. RESPONSIVE & MOBILE MENU */
+/* 7. RESPONSIVE BREAKPOINTS */
+
+/* Mobile Navigation (< 991px) */
 @media (max-width: 991px) {
   .menu-toggle {
     display: flex;
@@ -373,8 +299,8 @@ footer {
     background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     flex-direction: column;
-    padding: 2rem;
-    gap: 2rem;
+    padding: 2.5rem;
+    gap: 2.5rem;
     border-bottom: 1px solid #eaeaea;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
     opacity: 0;
@@ -410,44 +336,20 @@ footer {
   }
 }
 
+/* Tablet (>= 768px) */
 @media (min-width: 768px) {
-  .hero h1 {
-    font-size: 4.5rem;
-  }
-  .hero-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .step-row {
-    grid-template-columns: 1fr 2fr 2fr;
-  }
-  .testimonial-card {
-    flex: 0 0 50%;
-  }
   .footer-grid {
     grid-template-columns: 2fr 1fr 1fr;
   }
 }
 
+/* Desktop (>= 992px) */
 @media (min-width: 992px) {
   .contact-grid {
     grid-template-columns: 1.2fr 0.8fr;
   }
+
   .contact-page h1 {
     font-size: 4.5rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .hero h1 {
-    font-size: 5.5rem;
-  }
-  .services-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .testimonial-card {
-    flex: 0 0 33.333%;
   }
 }
