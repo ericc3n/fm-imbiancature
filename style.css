@@ -461,6 +461,7 @@ nav {
   align-items: flex-end;
   margin-bottom: 3rem;
   flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
 .test-header h2 {
