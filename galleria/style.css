@@ -3,14 +3,14 @@
 */
 
 :root {
-  --yellow: #f5c800;
+  --yellow: #5ef500;
   --black: #111111;
-  --mint: #a8d8d0;
+  --mint: hsl(97, 70%, 60%);
   --gray: #f4f4f4;
   --white: #ffffff;
   --font-heading: "Playfair Display", serif;
   --font-body: "DM Sans", sans-serif;
-  --transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition: all 0.3s ease;
 }
 
 /* 1. RESET & BASE */
