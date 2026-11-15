@@ -1,0 +1,104 @@
+# Controlli su ogni commit: formato dei messaggi (Conventional Commits,
+# CONTRIBUTING.md) e segreti finiti per sbaglio nel codice. Si guardano solo
+# i commit nuovi (quelli della PR, o del push): la storia vecchia non conta.
+
+name: Commits
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: commits-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  COMMITLINT_VERSION: 21.2.4
+  GITLEAKS_VERSION: 8.30.1
+  GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+  BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+  HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
+jobs:
+  messaggi:
+    name: Messaggi di commit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      # Fuori dal progetto: non tocca package-lock.json e funziona anche
+      # nelle repo senza Node.
+      - name: Installa commitlint ${{ env.COMMITLINT_VERSION }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/cl"
+          cp commitlint.config.mjs "$RUNNER_TEMP/cl/"
+          cd "$RUNNER_TEMP/cl"
+          echo '{"private":true}' > package.json
+          npm install --no-audit --no-fund --silent \
+            "@commitlint/cli@$COMMITLINT_VERSION" "@commitlint/config-conventional@$COMMITLINT_VERSION"
+
+      # Con "Squash and merge" il titolo della PR diventa il commit su main.
+      - name: Titolo della PR
+        if: github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        working-directory: ${{ runner.temp }}/cl
+        run: printf '%s\n' "$PR_TITLE" | npx --no commitlint
+
+      - name: Messaggi dei commit nuovi
+        working-directory: ${{ runner.temp }}/cl
+        run: |
+          repo="$GITHUB_WORKSPACE"
+          if [ -n "$BASE" ] && git -C "$repo" cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            shas=$(git -C "$repo" rev-list --no-merges "$BASE..$HEAD_SHA")
+          else
+            shas=$(git -C "$repo" rev-list --no-merges -n 1 "$HEAD_SHA")
+          fi
+          fail=0
+          for sha in $shas; do
+            if ! git -C "$repo" log -1 --format=%B "$sha" | npx --no commitlint; then
+              echo "::error::Il commit ${sha:0:7} non rispetta il formato (vedi CONTRIBUTING.md)"
+              fail=1
+            fi
+          done
+          exit $fail
+
+  segreti:
+    name: Segreti nel codice
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Installa gitleaks ${{ env.GITLEAKS_VERSION }}
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl -fsSL -o gitleaks.tar.gz "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          echo "${GITLEAKS_SHA256}  gitleaks.tar.gz" | sha256sum -c -
+          tar -xzf gitleaks.tar.gz gitleaks
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+
+      - name: gitleaks sui commit nuovi
+        run: |
+          if [ -n "$BASE" ] && git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            opts="$BASE..$HEAD_SHA"
+          else
+            opts="-1 $HEAD_SHA"
+          fi
+          gitleaks git --log-opts="$opts" --redact --no-banner --exit-code 1 .

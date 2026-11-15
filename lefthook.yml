@@ -1,0 +1,11 @@
+# Hook git locali. Una volta per clone: brew install lefthook && lefthook install
+# Le stesse regole le controlla la CI (vedi CONTRIBUTING.md).
+
+commit-msg:
+  commands:
+    conventional-commits:
+      run: |
+        head -n1 {1} | grep -Eq '^(Merge |Revert "|fixup! |squash! )|^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([^)]+\))?!?: .+' || {
+          echo "Messaggio fuori formato. Esempio: fix(api): gestisce il timeout (vedi CONTRIBUTING.md)"
+          exit 1
+        }

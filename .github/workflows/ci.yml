@@ -1,0 +1,67 @@
+# Integrazione continua del sito statico: su ogni PR e su ogni push a main
+# l'HTML deve essere valido e i link interni (pagine, immagini, CSS, JS) devono esistere.
+# Le action sono fissate per commit (il tag accanto è la versione).
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  HTMLHINT_VERSION: 1.9.2
+
+jobs:
+  verifica:
+    name: HTML e link
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      - name: HTML (htmlhint)
+        run: npx --yes "htmlhint@$HTMLHINT_VERSION" "**/*.html"
+
+      - name: Link interni
+        run: |
+          python3 - <<'PY'
+          import os, sys, re
+          from html.parser import HTMLParser
+          from urllib.parse import urlsplit, unquote
+          skip = re.compile(r"^(https?:|mailto:|tel:|#|data:|javascript:|//)", re.I)
+          class P(HTMLParser):
+              def __init__(self): super().__init__(); self.refs = []
+              def handle_starttag(self, tag, attrs):
+                  for k, v in attrs:
+                      if k in ("href", "src") and v and not skip.match(v.strip()):
+                          self.refs.append((self.getpos()[0], v.strip()))
+          bad = 0
+          for dp, dn, fn in os.walk("."):
+              dn[:] = [d for d in dn if not d.startswith(".") and d != "node_modules"]
+              for f in fn:
+                  if not f.endswith(".html"): continue
+                  page = os.path.join(dp, f); p = P(); p.feed(open(page, encoding="utf-8", errors="replace").read())
+                  for line, ref in p.refs:
+                      path = unquote(urlsplit(ref).path)
+                      if not path: continue
+                      t = os.path.normpath(os.path.join(".", path.lstrip("/")) if path.startswith("/") else os.path.join(dp, path))
+                      if os.path.isdir(t): t = os.path.join(t, "index.html")
+                      if not os.path.exists(t):
+                          print(f"{page}:{line}: link rotto -> {ref}"); bad += 1
+          print(f"{bad} link interni rotti"); sys.exit(1 if bad else 0)
+          PY
